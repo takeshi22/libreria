@@ -1,11 +1,11 @@
 FROM ruby:2.5
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
-RUN mkdir /libreria
-WORKDIR /libreria
-COPY Gemfile /libreria/Gemfile
-COPY Gemfile.lock /libreria/Gemfile.lock
+RUN mkdir -p /libreria/server
+WORKDIR /libreria/server
+COPY Gemfile /libreria/server/Gemfile
+COPY Gemfile.lock /libreria/server/Gemfile.lock
 RUN bundle install
-COPY . /libreria
+COPY . /libreria/server
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/

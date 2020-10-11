@@ -6,12 +6,18 @@ services:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: libreria
-  web:
-    build: .
+  server:
+    build: ./server
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 5555 -b '0.0.0.0'"
     volumes:
-      - .:/libreria
+      - ./server:/libreria/server
     ports:
       - "5555:5555"
     depends_on:
       - db
+  web:
+    build: ./client
+    volumes:
+      - ./client:/libreria/client
+    ports:
+      - "5050:5050"
