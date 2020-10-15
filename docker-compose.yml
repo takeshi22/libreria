@@ -1,9 +1,9 @@
-version: '3'
+version: "3"
 services:
   db:
     image: postgres
     volumes:
-      - ./tmp/db:/var/lib/postgresql/data
+      - ./server/tmp/db:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: libreria
   server:
@@ -11,13 +11,17 @@ services:
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 5555 -b '0.0.0.0'"
     volumes:
       - ./server:/libreria/server
+      - gem_data:/usr/local/bundle
     ports:
       - "5555:5555"
     depends_on:
       - db
   web:
     build: ./client
+    tty: true
     volumes:
       - ./client:/libreria/client
     ports:
       - "5050:5050"
+volumes:
+  gem_data:
