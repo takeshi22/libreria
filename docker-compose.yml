@@ -22,6 +22,6 @@ services:
     volumes:
       - ./client:/libreria/client
     ports:
-      - "5050:5050"
+      - "2525:2525"
 volumes:
   gem_data:

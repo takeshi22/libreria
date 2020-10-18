@@ -20,7 +20,7 @@ pickle-email-*.html
 # TODO Comment out this rule if you are OK with secrets being uploaded to the repo
 server/config/initializers/secret_token.rb
 server/config/master.key
-server/log/development.log
+server/log/
 
 # Only include if you have production secrets in this file, which is no longer a Rails default
 # config/secrets.yml
