@@ -8,4 +8,7 @@ ENV PATH /libreria/client/node_modules/.bin:$PATH
 COPY package.json /libreria/client
 RUN npm install
 
-# CMD ["npm", "run", "watch"]
+# Copying source files
+COPY . /libreria/client
+
+CMD ["npm", "run", "start"]

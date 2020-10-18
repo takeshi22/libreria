@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --inline",
     "watch": "webpack -w",
     "build": "webpack"
   },
@@ -32,6 +33,7 @@
     "lodash": "^4.17.19",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-router-dom": "^5.1.2"
+    "react-router-dom": "^5.1.2",
+    "webpack-dev-server": "^3.11.0"
   }
 }
