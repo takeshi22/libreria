@@ -5,12 +5,18 @@ import axios from "axios";
 import { Router, Switch, Route, Link } from "react-router-dom";
 import { createBrowserHistory } from "history";
 
-import { Routes } from "./routes/routes";
+import { BookIndex } from "../pages/books";
 
 const history = createBrowserHistory();
 
-function Index() {
-    return <Routes />;
+export const Routes = () => {
+    return (
+        <Router history={history}>
+            <Switch>
+                <Route path="/">
+                    <BookIndex />
+                </Route>
+            </Switch>
+        </Router>
+    );
 }
-
-ReactDOM.render(<Index />, document.getElementById("app"));
