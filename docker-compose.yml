@@ -17,10 +17,10 @@ services:
     depends_on:
       - db
   web:
-    build: ./client
+    build: ./web
     tty: true
     volumes:
-      - ./client:/libreria/client
+      - ./web:/libreria/web
     ports:
       - "2525:2525"
 volumes:

@@ -1,5 +1,5 @@
 const path = require("path");
-const outputPath = path.resolve(__dirname, "src/views/public");
+const outputPath = path.resolve(__dirname, "public");
 const MODE = "development";
 
 // ソースマップの利用有無(productionのときはソースマップを利用しない)
@@ -10,7 +10,7 @@ module.exports = {
   entry: "./src/views/index.tsx",
   output: {
     filename: "bundle.js",
-    path: __dirname + "/src/views/public",
+    path: outputPath,
   },
 
   // Enable sourcemaps for debugging webpack's output.
