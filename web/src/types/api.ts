@@ -5,5 +5,5 @@ export interface IBooks{
   favorite: number;
   name: string;
   created_at?: string;
-  updated_at: string;
+  updated_at?: string;
 }

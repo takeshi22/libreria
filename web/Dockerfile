@@ -11,4 +11,4 @@ RUN npm install
 # Copying source files
 COPY . /libreria/web
 
-CMD ["npm", "run", "start"]
+CMD ["npm", "start"]
