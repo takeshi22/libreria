@@ -12,7 +12,7 @@ enum FieldNames {
     name = "name",
 }
 
-const initialValues = {
+const initialValues: IBooks = {
   author: "author",
   category: "category",
   description: "description",
