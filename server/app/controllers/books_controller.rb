@@ -12,8 +12,8 @@ class BooksController < ApplicationController
   end
 
   def create
-    book = Book.new(book_paramas)
-    book.save!
+    @book = Book.create!(book_paramas)
+    json_response(@book, :created)
   end
 
   private
