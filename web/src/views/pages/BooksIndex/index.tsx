@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import * as React from "react";
 import { useRouteMatch, Link } from "react-router-dom";
-import axios from "axios";
 import { useQuery, gql } from "@apollo/client";
-import { IBooks } from "../../../types/api";
+import { IBook } from "../../../types/api";
 
 export const BookIndex = () => {
-    const [bookData, setBookData] = useState<IBooks[]>([]);
+    const [bookData, setBookData] = useState<IBook[]>([]);
     const { path, url } = useRouteMatch();
 
     const { loading, error, data } = useQuery(gql`
@@ -18,15 +17,6 @@ export const BookIndex = () => {
         }
     `);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            // const result = await axios.get("http://localhost:5555/books");
-            // setBookData(result.data);
-        };
-
-        fetchData();
-    }, []);
-
     return (
         <>
             <div>
@@ -36,7 +26,7 @@ export const BookIndex = () => {
             <table>
                 <thead></thead>
                 <tbody>
-                    {bookData.map(({ name, favorite, author, category }, i) => (
+                    {!loading && data.books.map(({ name, favorite, author, category }, i) => (
                         <tr key={i}>
                             <td>{name}</td>
                             <td>{favorite}</td>

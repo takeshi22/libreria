@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Form, Field } from "react-final-form";
+import { gql, useMutation } from "@apollo/client";
 import { Button } from "../../components/button";
-import { IBooks } from "../../../types/api";
+import { IBook } from "../../../types/api";
 
 enum FieldNames {
     author = "author",
@@ -12,19 +12,39 @@ enum FieldNames {
     name = "name",
 }
 
-const initialValues: IBooks = {
-  author: "author",
-  category: "category",
-  description: "description",
-  name: "name",
-}
+const initialValues: IBook = {
+    author: "author",
+    category: "category",
+    description: "description",
+    name: "name",
+};
 
 export const NewCreateBook = () => {
-    const onSubmit = async (value: IBooks) => {
-        const books = value;
-        axios
-            .post("http://localhost:5555/books", { books })
-            .then(() => {});
+    const ADD_BOOK = gql`
+        mutation createBook(
+            $input: CreateBookInput!
+        ) {
+            createBook(
+                input: $input
+            ) {
+                book {
+                    name
+                    description
+                    author
+                    category
+                    createdAt
+                }
+            }
+        }
+    `;
+    const [addBook, { data }] = useMutation(ADD_BOOK);
+
+    const onSubmit = async (values: IBook) => {
+        const { author, category, description, name } = values;
+
+        await addBook({
+            variables: { input: { author, category, description, name } },
+        });
     };
 
     return (
