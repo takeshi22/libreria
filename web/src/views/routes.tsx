@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 
-import { BookIndex } from "./pages/BooksIndex";
+import { BookIndex } from "./pages/Books/index";
 import { UpdateBook } from "./pages/UpdateBook";
 
 export const Routes = () => {
@@ -9,7 +9,6 @@ export const Routes = () => {
         <BrowserRouter>
             <Switch>
                 <Route path="/books" component={BookIndex} />
-                {/* <Route path="/books/new" component={UpdateBook} /> */}
             </Switch>
         </BrowserRouter>
     );
