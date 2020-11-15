@@ -4,6 +4,7 @@ import { useRouteMatch, Link, Switch, Route } from "react-router-dom";
 import { useQuery, gql } from "@apollo/client";
 import { IBook } from "../../../types/api";
 import { UpdateBook } from "../UpdateBook";
+import { ShowDetail } from "../Books/bookDetail";
 
 export const BookIndex = () => {
     const [bookData, setBookData] = useState<IBook[]>([]);
@@ -12,6 +13,7 @@ export const BookIndex = () => {
     const { loading, error, data } = useQuery(gql`
         query getBooks {
             books {
+                id
                 name
                 author
             }
@@ -23,9 +25,9 @@ export const BookIndex = () => {
             <table>
                 <thead></thead>
                 <tbody>
-                    {!loading && data.books.map(({ name, favorite, author, category }, i) => (
+                    {!loading && data.books.map(({ id, name, favorite, author, category }, i) => (
                         <tr key={i}>
-                            <td>{name}</td>
+                            <td><Link to={`${url}/${id}`}>{name}</Link></td>
                             <td>{favorite}</td>
                             <td>{author}</td>
                             <td>{category}</td>
@@ -51,8 +53,11 @@ export const BookIndex = () => {
                 <Route exact path={url}>
                     {rederTable()}
                 </Route>
-                <Route path={`${url}/new`}>
+                <Route exact path={`${url}/new`}>
                     <UpdateBook />
+                </Route>
+                <Route path={`${path}/:id`}>
+                    <ShowDetail />
                 </Route>
             </Switch>
         </>
