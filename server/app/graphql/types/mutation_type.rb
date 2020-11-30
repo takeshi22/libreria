@@ -4,5 +4,6 @@ module Types
     field :update_book, mutation: Mutations::UpdateBook
     field :create_book, mutation: Mutations::CreateBook
     field :create_user, mutation: Mutations::CreateUser
+    field :signin_user, mutation: Mutations::SignInUser
   end
 end
