@@ -1,6 +1,6 @@
 module Mutations
   class CreateBook < BaseMutation
-    graphql_name 'CreateBook'
+    graphql_name "CreateBook"
 
     field :book, Types::BookType, null: true
 
@@ -11,7 +11,7 @@ module Mutations
     argument :category, String, required: false
 
     def resolve(**args)
-      book = Book.create(name: args[:name], description: args[:description], favorite: args[:favorite], author: args[:author], category: args[:category])
+      book = Book.create!(name: args[:name], description: args[:description], favorite: args[:favorite], author: args[:author], category: args[:category], user: context[:current_user])
       { book: book }
     end
   end
